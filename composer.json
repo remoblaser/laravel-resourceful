@@ -1,0 +1,21 @@
+{
+    "name": "remoblaser/resourceful",
+    "description": "",
+    "authors": [
+        {
+            "name": "Remo Blaser",
+            "email": "remo.blaser@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "5.0.*",
+        "laracasts/generators": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "Remoblaser\\Resourceful": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
