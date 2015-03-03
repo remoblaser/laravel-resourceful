@@ -15,8 +15,8 @@ class {{className}} extends Controller {
 	 */
 	public function index()
 	{
-	    $all{{resource}}s = {{model}}::all();
-		return view('{{model}}.index', compact('all{{resource}}s'));
+	    ${{resource_plural}} = {{model}}::all();
+		return view('{{model}}.index', compact('{{resource_plural}}'));
 	}
 
 	/**

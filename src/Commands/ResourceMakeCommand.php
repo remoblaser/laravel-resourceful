@@ -42,9 +42,7 @@ class ResourceMakeCommand extends Command {
         $name = $this->argument('name');
         $schema = $this->option('schema');
 
-        $this->call('make:model', [
-            'name' => $name
-        ]);
+
 
         if($schema) {
             $this->call('make:migration:schema', [
@@ -53,8 +51,8 @@ class ResourceMakeCommand extends Command {
             ]);
         }
         else {
-            $this->call('make:migration', [
-                'name' => $name
+            $this->call('make:model', [
+                'name' => $name,
             ]);
         }
 
@@ -70,15 +68,12 @@ class ResourceMakeCommand extends Command {
     {
         $name = $this->argument('name');
 
-        if(ends_with($name, 'Controller')) {
-            $model = $name;
-        }
-        else {
-            $model = str_replace('Controller', '', $name);
-        }
+        $this->call('make:request', [
+            'name' => $this->parseRequestName($name)
+        ]);
+
         $this->call('make:controller:resourceful', [
-            'name' => $name,
-            'model' => $model
+            'name' => $name
         ]);
     }
 
@@ -97,6 +92,11 @@ class ResourceMakeCommand extends Command {
                 'name' => $name
             ]);
         }
+    }
+
+    protected function parseRequestName($name)
+    {
+        return $name . "Request";
     }
 
     /**

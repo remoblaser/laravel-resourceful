@@ -43,6 +43,10 @@ class ViewsMakeCommand extends Command {
             $this->createView($view, $path, $name);
         }
 
+        $partialsPath = $path . '/partials';
+        $this->makeDirectory($partialsPath);
+        $this->createView('form', $partialsPath, $name);
+
         $this->info('Views created successfully.');
     }
 
@@ -52,6 +56,7 @@ class ViewsMakeCommand extends Command {
 
         $stub = $this->files->get(__DIR__.'/../stubs/views/'.$viewName.'.stub');
         $filledStub = str_replace('((resource))', $resource, $stub);
+        $filledStub = str_replace('((resource_plural))', str_plural($resource), $filledStub);
         $this->makeDirectory($path);
         $this->files->put($path, $filledStub);
     }

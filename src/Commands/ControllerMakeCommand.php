@@ -38,7 +38,7 @@ class ControllerMakeCommand extends Command {
 
     public function fire()
     {
-        $name = $this->argument('name');
+        $name = $this->parseControllerName();
         if ($this->files->exists($path = $this->getPath($name)))
         {
             return $this->error($this->type.' already exists!');
@@ -53,19 +53,40 @@ class ControllerMakeCommand extends Command {
 
     }
 
+    protected function parseControllerName()
+    {
+        $name = strtolower($this->argument('name'));
+
+        if(ends_with($name, 'controller'))
+            return ucwords($name);
+
+        return ucwords($name) . "Controller";
+    }
+
     protected function createController($path, $controllerName)
     {
         $stub = $this->files->get(__DIR__.'/../stubs/controller.stub');
 
-        $model = $this->argument('model');
+        $model = $this->parseModelName();
 
         $filledStub = str_replace('{{resource}}', $model, $stub);
+        $filledStub = str_replace('{{resource_plural}}', str_plural($model), $filledStub);
         $filledStub = str_replace('{{model}}', ucfirst($model), $filledStub);
         $filledStub = str_replace('{{className}}', $controllerName, $filledStub);
         $filledStub = str_replace('{{rootNamespace}}', $this->getAppNamespace() , $filledStub);
         $filledStub = str_replace('{{namespace}}', $this->getDefaultNamespace() , $filledStub);
 
         $this->files->put($path, $filledStub);
+    }
+
+    protected function parseModelName()
+    {
+        $model = strtolower($this->argument('name'));
+
+        if(!ends_with($model, 'controller'))
+            return $model;
+
+        return str_replace('controller', '', $model);
     }
 
     protected function getDefaultNamespace()
@@ -90,8 +111,7 @@ class ControllerMakeCommand extends Command {
     protected function getArguments()
     {
         return [
-            ['name', InputArgument::REQUIRED, 'The name of the Controller'],
-            ['model', InputArgument::REQUIRED, 'The name of the Model'],
+            ['name', InputArgument::REQUIRED, 'The name of the Controller']
         ];
     }
     /**
