@@ -9,13 +9,15 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "5.0.*",
-        "laracasts/generators": "dev-master"
+        "illuminate/support": "5.0.*"
     },
     "autoload": {
         "psr-0": {
             "Remoblaser\\Resourceful": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "require-dev": {
+        "laracasts/generators": "~1.1"
+    }
 }

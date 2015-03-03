@@ -18,6 +18,8 @@ class ResourcefulServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
+
+
 		$this->registerGeneratorCommand();
         $this->registerViewsCommand();
         $this->registerControllerCommand();

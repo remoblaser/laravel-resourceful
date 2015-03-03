@@ -32,20 +32,36 @@ class ResourceMakeCommand extends Command {
         $this->expandRoutes();
 
     }
+    protected function expandRoutes()
+    {
+
+    }
 
     protected function generatePersistencyFiles()
     {
         $name = $this->argument('name');
+        $schema = $this->option('schema');
 
-        $schema = $this->argument('schema');
-        $this->call('make:migration:schema', [
-            'name' => $name,
-            'schema' => $schema
+        $this->call('make:model', [
+            'name' => $name
         ]);
+
+        if($schema) {
+            $this->call('make:migration:schema', [
+                'name' => $name,
+                'schema' => $schema
+            ]);
+        }
+        else {
+            $this->call('make:migration', [
+                'name' => $name
+            ]);
+        }
 
         $this->call('make:seed', [
             'name' => $name
         ]);
+
 
 
     }
@@ -70,11 +86,17 @@ class ResourceMakeCommand extends Command {
     {
         $name = $this->argument('name');
         $actions = $this->option('actions');
-
-        $this->call('make:views', [
-            'name' => $name,
-            'actions' => $actions
-        ]);
+        if($actions) {
+            $this->call('make:views', [
+                'name' => $name,
+                'actions' => $actions
+            ]);
+        }
+        else {
+            $this->call('make:views', [
+                'name' => $name
+            ]);
+        }
     }
 
     /**

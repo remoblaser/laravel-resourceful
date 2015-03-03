@@ -1,1 +1,22 @@
-View Index {{resource}}
+@extends('app')
+
+@section('content')
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($((resource))s as $((resource)))
+                    <td></td>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@stop

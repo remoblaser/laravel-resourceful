@@ -30,7 +30,7 @@ class ViewsMakeCommand extends Command {
 
     public function fire()
     {
-        $name = $this->argument('name');
+        $name = strtolower($this->argument('name'));
         if ($this->files->exists($path = $this->getPath($name)))
         {
             return $this->error($this->type.' already exists!');
@@ -40,18 +40,18 @@ class ViewsMakeCommand extends Command {
         $views = $this->parseActions();
 
         foreach($views as $view) {
-            $this->createView($view, $path);
+            $this->createView($view, $path, $name);
         }
 
         $this->info('Views created successfully.');
     }
 
-    protected function createView($viewName, $path)
+    protected function createView($viewName, $path, $resource)
     {
         $path .= '/' . $viewName . '.blade.php';
 
         $stub = $this->files->get(__DIR__.'/../stubs/views/'.$viewName.'.stub');
-        $filledStub = str_replace('{{resource}}', $viewName, $stub);
+        $filledStub = str_replace('((resource))', $resource, $stub);
         $this->makeDirectory($path);
         $this->files->put($path, $filledStub);
     }
