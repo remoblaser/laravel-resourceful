@@ -16,7 +16,7 @@ class {{className}} extends Controller {
 	public function index()
 	{
 	    ${{resource_plural}} = {{model}}::all();
-		return view('{{model}}.index', compact('{{resource_plural}}'));
+		return view('{{resource}}.index', compact('{{resource_plural}}'));
 	}
 
 	/**
@@ -26,7 +26,7 @@ class {{className}} extends Controller {
 	 */
 	public function create()
 	{
-		return view('{{model}}.create');
+		return view('{{resource}}.create');
 	}
 
 	/**
@@ -40,7 +40,7 @@ class {{className}} extends Controller {
 
 		{{model}}::create($input);
 
-		return view('{{model}}.store');
+		return view('{{resource}}.store');
 	}
 
 	/**
@@ -53,7 +53,7 @@ class {{className}} extends Controller {
 	{
 		${{resource}} = {{model}}::find($id);
 
-		return view('{{model}}.show', compact('{{resource}}'));
+		return view('{{resource}}.show', compact('{{resource}}'));
 	}
 
 	/**
@@ -66,7 +66,7 @@ class {{className}} extends Controller {
 	{
 		${{resource}} = {{model}}::find($id);
 
-        return view('{{model}}.edit', compact('{{resource}}'));
+        return view('{{resource}}.edit', compact('{{resource}}'));
 	}
 
 	/**
@@ -81,7 +81,7 @@ class {{className}} extends Controller {
         ${{resource}} = {{model}}::find($id);
         ${{resource}}->update($input);
 
-        return view('{{model}}.update');
+        return view('{{resource}}.update');
 	}
 
 	/**
@@ -95,7 +95,7 @@ class {{className}} extends Controller {
 		${{resource}} = {{model}}::find($id);
 		${{resource}}->destroy();
 
-		return view('{{model}}.destroy');
+		return view('{{resource}}.destroy');
 	}
 
 }

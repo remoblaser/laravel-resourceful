@@ -2,21 +2,9 @@
 
 @section('content')
 
-<div class="row">
-    <div class="col-md-12">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($((resource_plural))s as $((resource)))
-                    <td></td>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-</div>
+    @foreach($((resource_plural))s as $((resource)))
+        {!! var_dump($((resource)))) !!}
+    @endforeach
+
 
 @stop

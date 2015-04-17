@@ -52,7 +52,7 @@ class ResourceMakeCommand extends Command {
         }
         else {
             $this->call('make:model', [
-                'name' => $name,
+                'name' => ucfirst($name),
             ]);
         }
 
@@ -96,7 +96,7 @@ class ResourceMakeCommand extends Command {
 
     protected function parseRequestName($name)
     {
-        return $name . "Request";
+        return ucfirst($name) . "Request";
     }
 
     /**

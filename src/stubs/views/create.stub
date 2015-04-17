@@ -2,14 +2,10 @@
 
 @section('content')
 
-<div class="row">
-    <div class="col-md-12">
-        {!! Form::open(['route' => '((resource)).store'], 'method' => 'post']) !!}
-            @include('((resource)).partials.form', ['buttonText' => 'Create ((resource))'])
-        {!! Form::close() !!}
+    {!! Form::open(['route' => '((resource)).store'], 'method' => 'post']) !!}
+        @include('((resource)).partials.form', ['buttonText' => 'Create ((resource))'])
+    {!! Form::close() !!}
 
-        {{-- @include('errors.validation') --}}
-    </div>
-</div>
+    {{-- @include('errors.validation') --}}
 
 @stop
