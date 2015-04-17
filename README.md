@@ -1,3 +1,18 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Laravel Resourceful](#laravel-resourceful)
+  - [NOTE!](#note)
+  - [Example](#example)
+  - [Usage](#usage)
+    - [Install through composer](#install-through-composer)
+    - [Add Service Provider](#add-service-provider)
+    - [Run it!](#run-it)
+  - [Info](#info)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Laravel Resourceful 
 Resourceful let's you create a full Resource withing seconds!
 Use the artisan command and let it create a Migration, Seed, Request, Controller, Model and Views for your Resource!
