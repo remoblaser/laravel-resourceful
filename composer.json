@@ -1,6 +1,8 @@
 {
     "name": "remoblaser/resourceful",
-    "description": "",
+    "description": "Create Migration, Seed, Request, Controller, Model and Views for your resource",
+    "keywords": ["resource", "laravel", "artisan", "generator"],
+    "license": "MIT",
     "authors": [
         {
             "name": "Remo Blaser",
