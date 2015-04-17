@@ -224,7 +224,7 @@ class NewsController extends Controller {
 
 ##Usage
 ### Install through composer
-`composer require laracasts/generators --dev``
+`composer require remoblaser/resourceful --dev``
 
 ### Add Service Provider
 You probably don't want this on your production server, so instead of adding it to the `config/app.ch` we add it in `app/Providers/AppServiceProvider.php`, here's a example:
