@@ -16,7 +16,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Laravel Resourceful 
-Resourceful let's you create a full Resource withing seconds!
+Resourceful let's you create a full Resource withing seconds! Create a Resource with all the CRUD methods on every layer.
 Use the artisan command and let it create a Migration, Seed, Request, Controller, Model and Views for your Resource!
 
 
