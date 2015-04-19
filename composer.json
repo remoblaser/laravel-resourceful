@@ -18,7 +18,6 @@
             "Remoblaser\\Resourceful": "src/"
         }
     },
-    "minimum-stability": "stable",
     "require-dev": {
         "laracasts/generators": "~1.1"
     }
