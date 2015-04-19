@@ -80,11 +80,11 @@ class ResourceMakeCommand extends Command {
     protected function generateViews()
     {
         $name = $this->argument('name');
-        $actions = $this->option('actions');
+        $commands = $this->option('actions');
         if($actions) {
             $this->call('make:views', [
                 'name' => $name,
-                'actions' => $actions
+                'commands' => $commands
             ]);
         }
         else {
@@ -119,7 +119,7 @@ class ResourceMakeCommand extends Command {
     {
         return [
             ['schema', 's', InputOption::VALUE_OPTIONAL, 'Optional schema to be attached to the migration', null],
-            ['actions', 'a', InputOption::VALUE_OPTIONAL, 'Optional actions, e.g. views to be generated', null]
+            ['commands', 'c', InputOption::VALUE_OPTIONAL, 'Optional commands (CRUD) for views and controller actions', null]
         ];
     }
 }

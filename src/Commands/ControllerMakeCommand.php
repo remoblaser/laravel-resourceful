@@ -122,7 +122,7 @@ class ControllerMakeCommand extends Command {
     protected function getOptions()
     {
         return [
-            ['actions', 'a', InputOption::VALUE_OPTIONAL, 'Optional actions', null]
+            ['commands', 'c', InputOption::VALUE_OPTIONAL, 'Optional commands (CRUD)', null]
         ];
     }
 
