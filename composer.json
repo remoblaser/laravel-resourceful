@@ -18,5 +18,5 @@
         "psr-0": {
             "Remoblaser\\Resourceful": "src/"
         }
-    },
+    }
 }
