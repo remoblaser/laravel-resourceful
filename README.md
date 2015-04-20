@@ -35,7 +35,7 @@ Created Migration: 2015_04_17_083658_create_news_table
 Seed created successfully.
 Request created successfully.
 Controller created successfully.
-Views created successfully.
+Views created successfully. 
 ```
 
 You're able to submit a --commands option and choose which Actions/Commands you would like to have, commands need to be seperated with a ",".
