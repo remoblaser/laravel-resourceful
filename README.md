@@ -38,6 +38,9 @@ Controller created successfully.
 Views created successfully.
 ```
 
+You're able to submit a --commands option and choose which Actions/Commands you would like to have, commands need to be seperated with a ",".
+The following commands are available: create, store, show, index, edit, update, destroy
+
 ###Generated Controller
 ```php
 <?php namespace App\Http\Controllers;
