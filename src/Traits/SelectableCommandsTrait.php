@@ -3,24 +3,12 @@
 use Symfony\Component\Console\Input\InputOption;
 
 trait SelectableCommandsTrait {
-    protected function parseCommands()
+    protected function parseCommands($commands)
     {
-
-        $commands = $this->option('commands');
         if(isset($commands))
             return explode(',', $commands);
         return ['index', 'show', 'create', 'store', 'edit', 'update', 'destroy'];
     }
 
-    /**
-     * Get the console command options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            ['commands', 'c', InputOption::VALUE_OPTIONAL, 'Optional commands (CRUD)', null]
-        ];
-    }
+
 } 

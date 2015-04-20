@@ -8,5 +8,6 @@ use Illuminate\Http\Request;
 
 class {{className}} extends Controller {
 
+    {{commands}}
 
 }

@@ -67,23 +67,38 @@ class ControllerMakeCommand extends Command {
 
     protected function createController($path, $controllerName)
     {
-        $stub = $this->files->get(__DIR__.'/../stubs/controller/controller.stub');
+        $filledCommands = "";
+
+        $commands = $this->parseCommands($this->option('commands'));
 
         $model = $this->parseModelName();
 
-        $filledStub = str_replace('{{resource}}', $model, $stub);
-        $filledStub = str_replace('{{resource_plural}}', str_plural($model), $filledStub);
-        $filledStub = str_replace('{{model}}', ucfirst($model), $filledStub);
-        $filledStub = str_replace('{{className}}', $controllerName, $filledStub);
+        foreach($commands as $command) {
+            $filledCommands .= $this->createCommand($command, $model);
+        }
+
+
+        $stub = $this->files->get(__DIR__.'/../stubs/controller/controller.stub');
+
+        $filledStub = str_replace('{{className}}', $controllerName, $stub);
         $filledStub = str_replace('{{rootNamespace}}', $this->getAppNamespace() , $filledStub);
         $filledStub = str_replace('{{namespace}}', $this->getDefaultNamespace() , $filledStub);
+        $filledStub = str_replace('{{model}}', ucfirst($model), $filledStub);
+        $filledStub = str_replace('{{commands}}', $filledCommands, $filledStub);
+
 
         $this->files->put($path, $filledStub);
     }
 
-    protected function createCommand($command, $model)
+    protected function createCommand($commandName, $model)
     {
+        $stub = $this->files->get(__DIR__.'/../stubs/controller/commands/' . $commandName . '.stub');
 
+        $filledStub = str_replace('{{resource}}', $model, $stub);
+        $filledStub = str_replace('{{resource_plural}}', str_plural($model), $filledStub);
+        $filledStub = str_replace('{{model}}', ucfirst($model), $filledStub);
+
+        return $filledStub;
     }
 
     protected function parseModelName()
@@ -113,6 +128,18 @@ class ControllerMakeCommand extends Command {
         {
             $this->files->makeDirectory(dirname($path), 0777, true, true);
         }
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['commands', 'c', InputOption::VALUE_OPTIONAL, 'Optional commands (CRUD)', null]
+        ];
     }
 
     protected function getArguments()

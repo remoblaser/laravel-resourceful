@@ -26,22 +26,23 @@ class ResourceMakeCommand extends Command {
 
     public function fire()
     {
-        $this->generatePersistencyFiles();
-        $this->generateController();
-        $this->generateViews();
+        $commands = $this->option('commands');
+        $schema = $this->option('schema');
+
+        $this->generatePersistencyFiles($schema);
+        $this->generateController($commands);
+        $this->generateViews($commands);
 
     }
 
 
-    protected function generatePersistencyFiles()
+    protected function generatePersistencyFiles($schema)
     {
         $name = $this->argument('name');
-        $schema = $this->option('schema');
-
         if($schema) {
             $this->call('make:migration:schema', [
                 'name' => $name,
-                'schema' => $schema
+                '--schema' => $schema
             ]);
         }
         else {
@@ -58,7 +59,7 @@ class ResourceMakeCommand extends Command {
 
     }
 
-    protected function generateController()
+    protected function generateController($commands)
     {
         $name = $this->argument('name');
 
@@ -67,18 +68,19 @@ class ResourceMakeCommand extends Command {
         ]);
 
         $this->call('make:controller:resourceful', [
-            'name' => $name
+            'name' => $name,
+            '--commands' => $commands
         ]);
     }
 
-    protected function generateViews()
+    protected function generateViews($commands)
     {
         $name = $this->argument('name');
-        $commands = $this->option('commands');
+
         if($commands) {
             $this->call('make:views', [
                 'name' => $name,
-                'commands' => $commands
+                '--commands' => $commands
             ]);
         }
         else {

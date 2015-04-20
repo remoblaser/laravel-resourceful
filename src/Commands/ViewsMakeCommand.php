@@ -40,7 +40,8 @@ class ViewsMakeCommand extends Command {
         }
         $this->makeDirectory($path);
 
-        $views = $this->parseCommands();
+        $commands = $this->option('commands');
+        $views = $this->parseCommands($commands);
 
         foreach($views as $view) {
             $this->createView($view, $path, $name);
@@ -84,6 +85,18 @@ class ViewsMakeCommand extends Command {
     {
         return [
             ['name', InputArgument::REQUIRED, 'The name of the resource'],
+        ];
+    }
+
+    /**
+     * Get the console command options.
+     *
+     * @return array
+     */
+    protected function getOptions()
+    {
+        return [
+            ['commands', 'c', InputOption::VALUE_OPTIONAL, 'Optional commands (CRUD)', null]
         ];
     }
 
