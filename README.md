@@ -227,13 +227,15 @@ class NewsController extends Controller {
 `composer require remoblaser/resourceful --dev``
 
 ### Add Service Provider
-You probably don't want this on your production server, so instead of adding it to the `config/app.ch` we add it in `app/Providers/AppServiceProvider.php`, here's a example:
+You probably don't want this on your production server, so instead of adding it to the `config/app.ch` we add it in `app/Providers/AppServiceProvider.php`. here's a example:
+Since we're using Jeffrey Way's / Laracats's Generators, we also need to register his ServiceProvider. Here's a example:
 
 ```php
 public function register()
 {
     if ($this->app->environment() == 'local') {
         $this->app->register('Remoblaser\Resourceful\ResourcefulServiceProvider');
+        $this->app->register('Laracasts\Generators\GeneratorsServiceProvider');
     }
 }
 ```

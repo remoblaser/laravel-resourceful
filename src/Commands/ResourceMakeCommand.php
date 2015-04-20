@@ -29,20 +29,14 @@ class ResourceMakeCommand extends Command {
         $this->generatePersistencyFiles();
         $this->generateController();
         $this->generateViews();
-        $this->expandRoutes();
 
     }
-    protected function expandRoutes()
-    {
 
-    }
 
     protected function generatePersistencyFiles()
     {
         $name = $this->argument('name');
         $schema = $this->option('schema');
-
-
 
         if($schema) {
             $this->call('make:migration:schema', [
@@ -80,8 +74,8 @@ class ResourceMakeCommand extends Command {
     protected function generateViews()
     {
         $name = $this->argument('name');
-        $commands = $this->option('actions');
-        if($actions) {
+        $commands = $this->option('commands');
+        if($commands) {
             $this->call('make:views', [
                 'name' => $name,
                 'commands' => $commands

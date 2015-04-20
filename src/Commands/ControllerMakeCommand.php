@@ -6,10 +6,12 @@ use Illuminate\Foundation\Composer;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Illuminate\Console\AppNamespaceDetectorTrait;
+use Remoblaser\Resourceful\Traits\SelectableCommandsTrait;
 
 
 class ControllerMakeCommand extends Command {
     use AppNamespaceDetectorTrait;
+    use SelectableCommandsTrait;
     /**
      * The console command name.
      *
@@ -41,7 +43,7 @@ class ControllerMakeCommand extends Command {
         $name = $this->parseControllerName();
         if ($this->files->exists($path = $this->getPath($name)))
         {
-            return $this->error($this->type.' already exists!');
+            return $this->error($name.' already exists!');
         }
         $this->makeDirectory($path);
 
@@ -65,7 +67,7 @@ class ControllerMakeCommand extends Command {
 
     protected function createController($path, $controllerName)
     {
-        $stub = $this->files->get(__DIR__.'/../stubs/controller.stub');
+        $stub = $this->files->get(__DIR__.'/../stubs/controller/controller.stub');
 
         $model = $this->parseModelName();
 
@@ -77,6 +79,11 @@ class ControllerMakeCommand extends Command {
         $filledStub = str_replace('{{namespace}}', $this->getDefaultNamespace() , $filledStub);
 
         $this->files->put($path, $filledStub);
+    }
+
+    protected function createCommand($command, $model)
+    {
+
     }
 
     protected function parseModelName()
@@ -114,17 +121,7 @@ class ControllerMakeCommand extends Command {
             ['name', InputArgument::REQUIRED, 'The name of the Controller']
         ];
     }
-    /**
-     * Get the console command options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            ['commands', 'c', InputOption::VALUE_OPTIONAL, 'Optional commands (CRUD)', null]
-        ];
-    }
+
 
 
 }

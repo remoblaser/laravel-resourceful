@@ -1,0 +1,10 @@
+	/**
+	 * Display a listing of the resource.
+	 *
+	 * @return Response
+	 */
+	public function index()
+	{
+	    ${{resource_plural}} = {{model}}::all();
+		return view('{{resource}}.index', compact('{{resource_plural}}'));
+	}

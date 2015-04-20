@@ -1,0 +1,14 @@
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function update($id)
+	{
+		$input = Input::all();
+        ${{resource}} = {{model}}::find($id);
+        ${{resource}}->update($input);
+
+        return view('{{resource}}.update');
+	}

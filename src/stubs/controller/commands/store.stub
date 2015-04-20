@@ -1,0 +1,13 @@
+    /**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function store()
+	{
+		$input = Input::all();
+
+		{{model}}::create($input);
+
+		return view('{{resource}}.store');
+	}

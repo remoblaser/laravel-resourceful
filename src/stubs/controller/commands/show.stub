@@ -1,0 +1,12 @@
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function show($id)
+	{
+		${{resource}} = {{model}}::find($id);
+
+		return view('{{resource}}.show', compact('{{resource}}'));
+	}

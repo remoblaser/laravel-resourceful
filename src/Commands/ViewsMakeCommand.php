@@ -4,8 +4,11 @@ use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
+use Remoblaser\Resourceful\Traits\SelectableCommandsTrait;
 
 class ViewsMakeCommand extends Command {
+    use SelectableCommandsTrait;
+
     /**
      * The console command name.
      *
@@ -33,11 +36,11 @@ class ViewsMakeCommand extends Command {
         $name = strtolower($this->argument('name'));
         if ($this->files->exists($path = $this->getPath($name)))
         {
-            return $this->error($this->type.' already exists!');
+            return $this->error($name .' views already exist!');
         }
         $this->makeDirectory($path);
 
-        $views = $this->parseActions();
+        $views = $this->parseCommands();
 
         foreach($views as $view) {
             $this->createView($view, $path, $name);
@@ -61,14 +64,7 @@ class ViewsMakeCommand extends Command {
         $this->files->put($path, $filledStub);
     }
 
-    protected function parseActions()
-    {
 
-        $actions = $this->option('actions');
-        if(isset($actions))
-            return explode(',', $actions);
-        return ['index', 'show', 'create', 'store', 'edit', 'update', 'destroy'];
-    }
 
     protected function getPath($name)
     {
@@ -90,17 +86,7 @@ class ViewsMakeCommand extends Command {
             ['name', InputArgument::REQUIRED, 'The name of the resource'],
         ];
     }
-    /**
-     * Get the console command options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [
-            ['actions', 'a', InputOption::VALUE_OPTIONAL, 'Optional actions, e.g. views to be generated', null]
-        ];
-    }
+
 
 
 }

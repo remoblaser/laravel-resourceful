@@ -1,0 +1,12 @@
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
+	{
+		${{resource}} = {{model}}::find($id);
+
+        return view('{{resource}}.edit', compact('{{resource}}'));
+	}
