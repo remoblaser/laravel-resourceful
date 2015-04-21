@@ -15,7 +15,7 @@
         "laracasts/generators": "~1.1"
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "Remoblaser\\Resourceful": "src/"
         }
     }
