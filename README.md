@@ -19,7 +19,7 @@
 # Laravel Resourceful 
 Resourceful let's you create a full Resource withing seconds! Create a Resource with all the CRUD methods on every layer.
 Use the artisan command and let it create a Migration, Seed, Request, Controller, Model and Views for your Resource!
-
+**With the newest version, your routes.php file will automatically get updated too!**
 
 ##NOTE!
 This is a first draft, feel free to create pull requests. Might have a lot of bugs so be careful with the usage!
@@ -37,6 +37,7 @@ Seed created successfully.
 Request created successfully.
 Controller created successfully.
 Views created successfully.
+Routes successfully extended.
 ```
 
 You're able to submit a --commands option and choose which Actions/Commands you would like to have, commands need to be seperated with a ",".
@@ -247,6 +248,7 @@ public function register()
 ### Run it!
 Now you can use the command. I've extracted everything in single commands so you're able to use the `make:resource:controller` command if you would like to create only the Controllers the resourceful way.
 The `make:resource:views` command is seperate too, so feel free to use this one aswell.
+With the `route:extend` command, you're able to extend your routes.php file with a resource controller.
 
 
 ##Info
