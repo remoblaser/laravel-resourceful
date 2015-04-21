@@ -67,7 +67,7 @@ class ResourceMakeCommand extends Command {
             'name' => $this->parseRequestName($name)
         ]);
 
-        $this->call('make:controller:resourceful', [
+        $this->call('make:resource:controller', [
             'name' => $name,
             '--commands' => $commands
         ]);
@@ -78,13 +78,13 @@ class ResourceMakeCommand extends Command {
         $name = $this->argument('name');
 
         if($commands) {
-            $this->call('make:views', [
+            $this->call('make:resource:views', [
                 'name' => $name,
                 '--commands' => $commands
             ]);
         }
         else {
-            $this->call('make:views', [
+            $this->call('make:resource:views', [
                 'name' => $name
             ]);
         }

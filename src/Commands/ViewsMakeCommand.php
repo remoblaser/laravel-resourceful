@@ -14,7 +14,7 @@ class ViewsMakeCommand extends Command {
      *
      * @var string
      */
-    protected $name = "make:views";
+    protected $name = "make:resource:views";
 
     /**
      * The console command description.

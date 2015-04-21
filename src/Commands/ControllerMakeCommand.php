@@ -17,7 +17,7 @@ class ControllerMakeCommand extends Command {
      *
      * @var string
      */
-    protected $name = "make:controller:resourceful";
+    protected $name = "make:resource:controller";
 
     /**
      * The console command description.
@@ -138,7 +138,7 @@ class ControllerMakeCommand extends Command {
     protected function getOptions()
     {
         return [
-            ['commands', 'c', InputOption::VALUE_OPTIONAL, 'Optional commands (CRUD)', null]
+            ['commands', 'c', InputOption::VALUE_OPTIONAL, 'Optional commands (CRUD)', null],
         ];
     }
 
