@@ -21,7 +21,7 @@ class ViewsMakeCommand extends Command {
      *
      * @var string
      */
-    protected $description = "Generate default bootstrap views";
+    protected $description = "Create views for a resource";
 
     protected $files;
 

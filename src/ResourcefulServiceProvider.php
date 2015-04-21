@@ -22,6 +22,7 @@ class ResourcefulServiceProvider extends ServiceProvider {
 
 		$this->registerGeneratorCommand();
         $this->registerViewsCommand();
+        $this->registerExtendRoutesCommand();
         $this->registerControllerCommand();
     }
 
@@ -41,6 +42,15 @@ class ResourcefulServiceProvider extends ServiceProvider {
         });
 
         $this->commands('command.remoblaser.views');
+    }
+
+    private function registerExtendRoutesCommand()
+    {
+        $this->app->singleton('command.remoblaser.extendroutes', function($app) {
+            return $app['Remoblaser\Resourceful\Commands\ExtendRoutesWithResourceCommand'];
+        });
+
+        $this->commands('command.remoblaser.extendroutes');
     }
 
     private function registerControllerCommand()

@@ -32,7 +32,17 @@ class ResourceMakeCommand extends Command {
         $this->generatePersistencyFiles($schema);
         $this->generateController($commands);
         $this->generateViews($commands);
+        $this->extendRoutes();
 
+    }
+
+    protected function extendRoutes()
+    {
+        $name = $this->argument('name');
+
+        $this->call('route:extend', [
+            'name' => $name
+        ]);
     }
 
 
