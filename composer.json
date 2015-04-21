@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Remoblaser\\Resourceful": "src/"
+            "Remoblaser\\Resourceful\\": "src/"
         }
     }
 }
