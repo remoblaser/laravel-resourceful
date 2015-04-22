@@ -2,7 +2,7 @@
 
 @section('content')
 
-    {!! Form::open(['route' => '((resource)).store'], 'method' => 'post']) !!}
+    {!! Form::open(['route' => '((resource)).store', 'method' => 'post']) !!}
         @include('((resource)).partials.form', ['buttonText' => 'Create ((resource))'])
     {!! Form::close() !!}
 
