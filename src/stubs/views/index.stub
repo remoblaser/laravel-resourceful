@@ -2,8 +2,8 @@
 
 @section('content')
 
-    @foreach($((resource_plural))s as $((resource)))
-        {!! var_dump($((resource)))) !!}
+    @foreach($((resource_plural)) as $((resource)))
+        {!! var_dump($((resource))) !!}
     @endforeach
 
 
