@@ -11,5 +11,5 @@
 		${{resource}} = {{model}}::find($id);
 		${{resource}}->destroy();
 
-		return view('{{resource}}.destroy');
+		return redirect('/{{resource}}');
 	}

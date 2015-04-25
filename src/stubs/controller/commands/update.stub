@@ -12,5 +12,5 @@
         ${{resource}} = {{model}}::find($id);
         ${{resource}}->update($input);
 
-        return view('{{resource}}.update');
+        return redirect('/{{resource}}');
 	}

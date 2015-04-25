@@ -1,9 +1,0 @@
-@extends('app')
-
-@section('content')
-
-    <h2>Updated.</h2>
-    <p>{!! link_to_route('((resource)).index', 'View all') !!}
-
-
-@stop

@@ -87,7 +87,7 @@ class NewsController extends Controller {
 
 		News::create($input);
 
-		return view('news.store');
+		return redirect('/news');
 	}
 
 	/**
@@ -128,7 +128,7 @@ class NewsController extends Controller {
         $news = News::find($id);
         $news->update($input);
 
-        return view('news.update');
+        return redirect('/news');
 	}
 
 	/**
@@ -142,7 +142,7 @@ class NewsController extends Controller {
 		$news = News::find($id);
 		$news->destroy();
 
-		return view('news.destroy');
+		return redirect('/news');
 	}
 
 }
@@ -163,15 +163,6 @@ class NewsController extends Controller {
 @stop
 ```
 
-####destroy.blade.php
-```php
-@extends('app')
-
-@section('content')
-    <h2>Deleted.</h2>
-    <p>{!! link_to_route('news.index', 'View all') !!}
-@stop
-```
 
 ####edit.blade.php
 ```php
@@ -203,26 +194,6 @@ class NewsController extends Controller {
 
 @section('content')
     {!! var_dump($news) !!}
-@stop
-```
-
-####store.blade.php
-```php
-@extends('app')
-
-@section('content')
-    <h2>Create.</h2>
-    <p>{!! link_to_route('news.index', 'View all') !!}
-@stop
-```
-
-####update.blade.php
-```php
-@extends('app')
-
-@section('content')
-    <h2>Updated.</h2>
-    <p>{!! link_to_route('news.index', 'View all') !!}
 @stop
 ```
 

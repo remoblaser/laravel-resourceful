@@ -11,5 +11,5 @@
 
 		{{model}}::create($input);
 
-		return view('{{resource}}.store');
+		return redirect('{/{resource}}');
 	}
