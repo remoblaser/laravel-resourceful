@@ -7,6 +7,13 @@ trait SelectableCommandsTrait {
     {
         if(isset($commands))
             return explode(',', $commands);
+        return ['index', 'show', 'create', 'store', 'edit', 'update', 'destroy'];
+    }
+
+    protected function parseViewCommands($commands)
+    {
+        if(isset($commands))
+            return explode(',', $commands);
         return ['index', 'show', 'create', 'edit'];
     }
 

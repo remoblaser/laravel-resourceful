@@ -41,7 +41,7 @@ class ViewsMakeCommand extends Command {
         $this->makeDirectory($path);
 
         $commands = $this->option('commands');
-        $views = $this->parseCommands($commands);
+        $views = $this->parseViewCommands($commands);
 
         foreach($views as $view) {
             $this->createView($view, $path, $name);

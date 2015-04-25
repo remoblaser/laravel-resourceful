@@ -4,13 +4,13 @@
 	 * Update the specified resource in storage.
 	 *
 	 * @param  int  $id
+	 * @param  {{model}}Request $request
 	 * @return Response
 	 */
-	public function update($id)
+	public function update({{model}}Request $request, $id)
 	{
-		$input = Input::all();
         ${{resource}} = {{model}}::findOrFail($id);
-        ${{resource}}->update($input);
+        ${{resource}}->update($request->all());
 
         return redirect('/{{resource}}');
 	}
