@@ -8,7 +8,7 @@
 	 */
 	public function edit($id)
 	{
-		${{resource}} = {{model}}::find($id);
+		${{resource}} = {{model}}::findOrFail($id);
 
         return view('{{resource}}.edit', compact('{{resource}}'));
 	}

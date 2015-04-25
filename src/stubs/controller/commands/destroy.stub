@@ -8,7 +8,7 @@
 	 */
 	public function destroy($id)
 	{
-		${{resource}} = {{model}}::find($id);
+		${{resource}} = {{model}}::findOrFail($id);
 		${{resource}}->destroy();
 
 		return redirect('/{{resource}}');

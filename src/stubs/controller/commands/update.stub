@@ -9,7 +9,7 @@
 	public function update($id)
 	{
 		$input = Input::all();
-        ${{resource}} = {{model}}::find($id);
+        ${{resource}} = {{model}}::findOrFail($id);
         ${{resource}}->update($input);
 
         return redirect('/{{resource}}');
