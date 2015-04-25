@@ -50,6 +50,7 @@ The following commands are available: create, store, show, index, edit, update, 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\News;
+use App\Http\Requests\NewsRequest;
 
 use Illuminate\Http\Request;
 
@@ -79,13 +80,12 @@ class NewsController extends Controller {
 	/**
 	 * Store a newly created resource in storage.
 	 *
+	 * @param  NewsRequest $request
 	 * @return Response
 	 */
-	public function store()
+	public function store(NewsRequest $request)
 	{
-		$input = Input::all();
-
-		News::create($input);
+		News::create($request->all());
 
 		return redirect('/news');
 	}
@@ -120,13 +120,13 @@ class NewsController extends Controller {
 	 * Update the specified resource in storage.
 	 *
 	 * @param  int  $id
+	 * @param  NewsRequest $request
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(NewsRequest $request ,$id)
 	{
-		$input = Input::all();
         $news = News::find($id);
-        $news->update($input);
+        $news->update($request->all());
 
         return redirect('/news');
 	}
