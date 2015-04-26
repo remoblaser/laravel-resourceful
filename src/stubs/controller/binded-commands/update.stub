@@ -1,0 +1,15 @@
+
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  {{model}}  ${{resource}}
+	 * @param  {{model}}Request $request
+	 * @return Response
+	 */
+	public function update({{model}}Request $request, {{model}} ${{resource}})
+	{
+        ${{resource}}->update($request->all());
+
+        return redirect('/{{resource}}');
+	}

@@ -3,13 +3,12 @@
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  {{model}}  ${{resource}}
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy({{model}} ${{resource}})
 	{
-		${{resource}} = {{model}}::findOrFail($id);
-		${{resource}}->delete();
+		${{resource}}->destroy();
 
 		return redirect('/{{resource}}');
 	}

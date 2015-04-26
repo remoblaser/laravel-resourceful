@@ -18,12 +18,11 @@ class ResourcefulServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-
-
 		$this->registerGeneratorCommand();
         $this->registerViewsCommand();
         $this->registerExtendRoutesCommand();
         $this->registerControllerCommand();
+        $this->registerBindModelToRouteCommand();
     }
 
     private function registerGeneratorCommand()
@@ -60,6 +59,15 @@ class ResourcefulServiceProvider extends ServiceProvider {
         });
 
         $this->commands('command.remoblaser.controller');
+    }
+
+    private function registerBindModelToRouteCommand()
+    {
+        $this->app->singleton('command.remoblaser.bindmodel', function($app) {
+            return $app['Remoblaser\Resourceful\Commands\BindModelToRouteCommand'];
+        });
+
+        $this->commands('command.remoblaser.bindmodel');
     }
 
 }

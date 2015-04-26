@@ -1,0 +1,12 @@
+
+
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  {{model}}  ${{resource}}
+	 * @return Response
+	 */
+	public function show({{model}} ${{resource}})
+	{
+		return view('{{resource}}.show', compact('{{resource}}'));
+	}

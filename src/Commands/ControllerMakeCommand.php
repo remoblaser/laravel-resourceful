@@ -92,13 +92,23 @@ class ControllerMakeCommand extends Command {
 
     protected function createCommand($commandName, $model)
     {
-        $stub = $this->files->get(__DIR__.'/../stubs/controller/commands/' . $commandName . '.stub');
+        $stubPath = $this->getStubRoot();
+        $stub = $this->files->get($stubPath . $commandName . '.stub');
 
         $filledStub = str_replace('{{resource}}', $model, $stub);
         $filledStub = str_replace('{{resource_plural}}', str_plural($model), $filledStub);
         $filledStub = str_replace('{{model}}', ucfirst($model), $filledStub);
 
         return $filledStub;
+    }
+
+    private function getStubRoot()
+    {
+        if($this->option('bind'))
+        {
+            return __DIR__.'/../stubs/controller/binded-commands/';
+        }
+        return __DIR__.'/../stubs/controller/commands/';
     }
 
     protected function parseModelName()
@@ -138,6 +148,7 @@ class ControllerMakeCommand extends Command {
     protected function getOptions()
     {
         return [
+            ['bind', 'b', InputOption::VALUE_NONE, 'Bind model to route', null],
             ['commands', 'c', InputOption::VALUE_OPTIONAL, 'Optional commands (CRUD)', null],
         ];
     }

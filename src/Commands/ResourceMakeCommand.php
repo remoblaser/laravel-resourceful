@@ -33,6 +33,9 @@ class ResourceMakeCommand extends Command {
         $this->generateController($commands);
         $this->generateViews($commands);
         $this->extendRoutes();
+        if($this->option('bind')) {
+            $this->bindModelToRoute();
+        }
 
     }
 
@@ -77,9 +80,21 @@ class ResourceMakeCommand extends Command {
             'name' => $this->parseRequestName($name)
         ]);
 
+        $bind = $this->option('bind');
+
         $this->call('make:resource:controller', [
             'name' => $name,
-            '--commands' => $commands
+            '--commands' => $commands,
+            '--bind' => $bind,
+        ]);
+    }
+
+    protected function bindModelToRoute()
+    {
+        $name = $this->argument('name');
+
+        $this->call('route:bind', [
+            'name' => $name
         ]);
     }
 
@@ -124,6 +139,7 @@ class ResourceMakeCommand extends Command {
     protected function getOptions()
     {
         return [
+            ['bind', 'b', InputOption::VALUE_NONE, 'Bind model to route', null],
             ['schema', 's', InputOption::VALUE_OPTIONAL, 'Optional schema to be attached to the migration', null],
             ['commands', 'c', InputOption::VALUE_OPTIONAL, 'Optional commands (CRUD) for views and controller actions', null]
         ];

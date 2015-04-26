@@ -1,0 +1,12 @@
+
+
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  {{model}}  ${{resource}}
+	 * @return Response
+	 */
+	public function edit({{model}} ${{resource}})
+	{
+        return view('{{resource}}.edit', compact('{{resource}}'));
+	}

@@ -1,0 +1,14 @@
+
+
+    /**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  {{model}}Request $request
+	 * @return Response
+	 */
+	public function store({{model}}Request $request)
+	{
+		{{model}}::create($request->all());
+
+		return redirect('/{{resource}}');
+	}
