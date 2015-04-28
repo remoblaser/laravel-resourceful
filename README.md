@@ -1,20 +1,18 @@
 [![Build Status](https://travis-ci.org/remoblaser/laravel-resourceful.svg?branch=master)](https://travis-ci.org/remoblaser/laravel-resourceful)
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+
+**Table of Contents**
 
 - [Laravel Resourceful](#laravel-resourceful)
   - [NOTE!](#note)
+  - [Usage](#usage)
+      - [Install through composer](#install-through-composer)
+      - [Add Service Provider](#add-service-provider)
+      - [Run it!](#run-it)
   - [Example](#example)
     - [Generated Controller](#generated-controller)
     - [Generated Views](#generated-views)
-  - [Usage](#usage)
-    - [Install through composer](#install-through-composer)
-    - [Add Service Provider](#add-service-provider)
-    - [Run it!](#run-it)
   - [Info](#info)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Laravel Resourceful 
 Resourceful let's you create a full Resource withing seconds! Create a Resource with all the CRUD methods on every layer.
@@ -25,6 +23,32 @@ Use the artisan command and let it create a Migration, Seed, Request, Controller
 This is a first draft, feel free to create pull requests. Might have a lot of bugs so be careful with the usage!
 Will continue working on it, tests are yet to come.
 
+
+##Usage
+### Install through composer
+`composer require remoblaser/resourceful --dev``
+
+### Add Service Provider
+You probably don't want this on your production server, so instead of adding it to the `config/app.ch` we add it in `app/Providers/AppServiceProvider.php`. here's a example:
+Since we're using Jeffrey Way's / Laracats's Generators, we also need to register his ServiceProvider. Here's a example:
+
+```php
+public function register()
+{
+    if ($this->app->environment() == 'local') {
+        $this->app->register('Remoblaser\Resourceful\ResourcefulServiceProvider');
+        $this->app->register('Laracasts\Generators\GeneratorsServiceProvider');
+    }
+}
+```
+
+### Run it!
+Now you can use the command. I've extracted everything in single commands so you're able to use the `make:resource:controller` command if you would like to create only the Controllers the resourceful way.
+The `make:resource:views` command is seperate too, so feel free to use this one aswell.
+With the `route:extend` command, you're able to extend your routes.php file with a resource controller.
+The new command `route:bind` binds a route to your model. 
+With the -b option, you can do this automatically when generating a resource.
+If you want to see all the options, use `make:resource -h`.
 
 ##Example
 I would like to have a News Resource. I want to have all the CRUD functionality for it. So instead of creating all the Stuff by hand, i can use `php artisan make:resource news` to generate all the necessary stuff or just use single parts:
@@ -198,30 +222,6 @@ Views are built with it.**
     {!! var_dump($news) !!}
 @stop
 ```
-
-
-##Usage
-### Install through composer
-`composer require remoblaser/resourceful --dev``
-
-### Add Service Provider
-You probably don't want this on your production server, so instead of adding it to the `config/app.ch` we add it in `app/Providers/AppServiceProvider.php`. here's a example:
-Since we're using Jeffrey Way's / Laracats's Generators, we also need to register his ServiceProvider. Here's a example:
-
-```php
-public function register()
-{
-    if ($this->app->environment() == 'local') {
-        $this->app->register('Remoblaser\Resourceful\ResourcefulServiceProvider');
-        $this->app->register('Laracasts\Generators\GeneratorsServiceProvider');
-    }
-}
-```
-
-### Run it!
-Now you can use the command. I've extracted everything in single commands so you're able to use the `make:resource:controller` command if you would like to create only the Controllers the resourceful way.
-The `make:resource:views` command is seperate too, so feel free to use this one aswell.
-With the `route:extend` command, you're able to extend your routes.php file with a resource controller.
 
 
 ##Info
