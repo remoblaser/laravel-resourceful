@@ -149,6 +149,8 @@ class NewsController extends Controller {
 ````
 
 ###Generated Views
+**Make sure to include [Illuminate/HTML](https://packagist.org/packages/illuminate/html), since the
+Views are built with it.**
 
 ####create.blade.php
 ```php

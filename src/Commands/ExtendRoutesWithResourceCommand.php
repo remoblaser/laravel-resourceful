@@ -39,7 +39,7 @@ class ExtendRoutesWithResourceCommand extends Command{
 
         $stub = $this->files->get(__DIR__.'/../stubs/route.stub');
 
-        $filledStub = str_replace('{{resource}}', $name,  $stub);
+        $filledStub = str_replace('{{resource}}', strtolower($name),  $stub);
         $filledStub = str_replace('{{controller}}', $this->getControllerName($name), $filledStub);
 
         $routes .= $filledStub;
