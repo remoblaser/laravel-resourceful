@@ -45,7 +45,7 @@ class ResourceMakeCommand extends Command {
         foreach($includes as $include)
         {
             $callableMethod = "generate" . ucfirst($include);
-            call_user_func_array([$this, $callableMethod]);
+            call_user_func([$this, $callableMethod]);
         }
 
         $this->extendRoutes();
