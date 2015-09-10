@@ -126,7 +126,7 @@ class ResourceMakeCommand extends Command {
     {
         return [
             ['bind', 'b', InputOption::VALUE_NONE, 'Bind model to route', null],
-            ['exclude', 'e', InputOption::VALUE_NONE, 'Exclude Migration/Model/Views/Seed (comma seperated)', null],
+            ['exclude', 'e', InputOption::VALUE_OPTIONAL, 'Exclude Migration/Model/Views/Seed (comma seperated)', null],
             ['schema', 's', InputOption::VALUE_OPTIONAL, 'Optional schema to be attached to the migration', null],
             ['commands', 'c', InputOption::VALUE_OPTIONAL, 'Optional commands (CRUD) for views and controller actions', null]
         ];
