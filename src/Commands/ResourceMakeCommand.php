@@ -3,14 +3,18 @@
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Composer;
+use Remoblaser\Resourceful\Traits\GeneratorTrait;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
 class ResourceMakeCommand extends Command {
+    use GeneratorTrait;
 
     protected $name = "make:resource";
 
     protected $description = "Create a new resource including model, migration, seed, controller, views";
+
+    protected $generators = ['migration', 'seed', 'model', 'controller', 'views'];
 
     protected $files;
 
@@ -26,68 +30,34 @@ class ResourceMakeCommand extends Command {
 
     public function fire()
     {
-        $commands = $this->option('commands');
-        $schema = $this->option('schema');
+        $this->makeResource();
 
-        $this->generatePersistencyFiles($schema);
-        $this->generateController($commands);
-        $this->generateViews($commands);
-        $this->extendRoutes();
         if($this->option('bind')) {
             $this->bindModelToRoute();
         }
 
     }
 
+    protected function makeResource()
+    {
+        $includes = $this->includes();
+
+        foreach($includes as $include)
+        {
+            $callableMethod = "generate" . ucfirst($include);
+            call_user_func_array([$this, $callableMethod]);
+        }
+
+        $this->extendRoutes();
+    }
+
     protected function extendRoutes()
     {
-        $name = $this->argument('name');
-
         $this->call('route:extend', [
-            'name' => $name
+            'name' => $this->name()
         ]);
     }
 
-
-    protected function generatePersistencyFiles($schema)
-    {
-        $name = $this->argument('name');
-        if($schema) {
-            $this->call('make:migration:schema', [
-                'name' => $name,
-                '--schema' => $schema
-            ]);
-        }
-        else {
-            $this->call('make:model', [
-                'name' => ucfirst($name),
-            ]);
-        }
-
-        $this->call('make:seed', [
-            'name' => $name
-        ]);
-
-
-
-    }
-
-    protected function generateController($commands)
-    {
-        $name = $this->argument('name');
-
-        $this->call('make:request', [
-            'name' => $this->parseRequestName($name)
-        ]);
-
-        $bind = $this->option('bind');
-
-        $this->call('make:resource:controller', [
-            'name' => $name,
-            '--commands' => $commands,
-            '--bind' => $bind,
-        ]);
-    }
 
     protected function bindModelToRoute()
     {
@@ -98,27 +68,43 @@ class ResourceMakeCommand extends Command {
         ]);
     }
 
-    protected function generateViews($commands)
+    protected function excludes()
     {
-        $name = $this->argument('name');
+        $excludes = $this->option('exclude');
 
-        if($commands) {
-            $this->call('make:resource:views', [
-                'name' => $name,
-                '--commands' => $commands
-            ]);
-        }
-        else {
-            $this->call('make:resource:views', [
-                'name' => $name
-            ]);
-        }
+        return explode(',', $excludes);
     }
 
-    protected function parseRequestName($name)
+    protected function includes()
     {
-        return ucfirst($name) . "Request";
+        $includes = [];
+        foreach($this->generators as $generator)
+        {
+            if(!in_array($generator, $this->excludes()))
+                $includes[] = $generator;
+        }
+
+        return $includes;
     }
+
+    protected function schema()
+    {
+        $schema = $this->option('schema');
+
+        return $schema ? $schema : false;
+    }
+
+    protected function name()
+    {
+        return $this->argument('name');
+    }
+
+    protected function migrationName()
+    {
+        $name = $this->name();
+        return "create_{$name}_table";
+    }
+
 
     /**
      * Get the console command arguments.
@@ -140,6 +126,7 @@ class ResourceMakeCommand extends Command {
     {
         return [
             ['bind', 'b', InputOption::VALUE_NONE, 'Bind model to route', null],
+            ['exclude', 'e', InputOption::VALUE_NONE, 'Exclude Migration/Model/Views/Seed (comma seperated)', null],
             ['schema', 's', InputOption::VALUE_OPTIONAL, 'Optional schema to be attached to the migration', null],
             ['commands', 'c', InputOption::VALUE_OPTIONAL, 'Optional commands (CRUD) for views and controller actions', null]
         ];
