@@ -1,11 +1,11 @@
 <?php namespace Remoblaser\Resourceful\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Composer;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Foundation\Composer;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Illuminate\Console\AppNamespaceDetectorTrait;
+use Symfony\Component\Console\Input\InputArgument;
 use Remoblaser\Resourceful\Traits\SelectableCommandsTrait;
 
 
