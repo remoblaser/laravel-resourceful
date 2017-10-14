@@ -19,12 +19,12 @@ Resourceful let's you create a full Resource withing seconds! Create a Resource 
 Use the artisan command and let it create a Migration, Seed, Request, Controller, Model and Views for your Resource!
 **You're now able to exclude certain parts with --exclude. See the example!**
 
-##NOTE!
+## NOTE!
 This is a first draft, feel free to create pull requests. Might have a lot of bugs so be careful with the usage!
 Will continue working on it, tests are yet to come.
 
 
-##Usage
+## Usage
 ### Install through composer
 `composer require remoblaser/resourceful --dev``
 
@@ -50,7 +50,7 @@ The new command `route:bind` binds a route to your model.
 With the -b option, you can do this automatically when generating a resource.
 If you want to see all the options, use `make:resource -h`.
 
-##Example
+## Example
 I would like to have a News Resource. I want to have all the CRUD functionality for it. So instead of creating all the Stuff by hand, i can use `php artisan make:resource news` to generate all the necessary stuff or just use single parts:
 
 ```bash
@@ -70,7 +70,7 @@ If you would like to generate everything except for the Views and the Seed, you 
 You're able to submit a --commands option and choose which Actions/Commands you would like to have, commands need to be seperated with a ",".
 The following commands are available: create, store, show, index, edit, update, destroy
 
-###Generated Controller
+### Generated Controller
 ```php
 <?php namespace App\Http\Controllers;
 
@@ -175,11 +175,11 @@ class NewsController extends Controller {
 }
 ````
 
-###Generated Views
+### Generated Views
 **Make sure to include [Illuminate/HTML](https://packagist.org/packages/illuminate/html), since the
 Views are built with it.**
 
-####create.blade.php
+#### create.blade.php
 ```php
 @extends('app')
 
@@ -193,7 +193,7 @@ Views are built with it.**
 ```
 
 
-####edit.blade.php
+#### edit.blade.php
 ```php
 @extends('app')
 
@@ -206,7 +206,7 @@ Views are built with it.**
 @stop
 ```
 
-####index.blade.php
+#### index.blade.php
 ```php
 @extends('app')
 
@@ -217,7 +217,7 @@ Views are built with it.**
 @stop
 ```
 
-####show.blade.php
+#### show.blade.php
 ```php
 @extends('app')
 
@@ -227,6 +227,6 @@ Views are built with it.**
 ```
 
 
-##Info
+## Info
 If you like my work, i would appreciate it if you would spread it! Thank you!
 You can contact me through [Twitter](https://twitter.com/remoblaser)
