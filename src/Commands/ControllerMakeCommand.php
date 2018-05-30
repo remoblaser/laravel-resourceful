@@ -4,13 +4,13 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Composer;
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\InputOption;
-use Illuminate\Console\AppNamespaceDetectorTrait;
+use Illuminate\Console\DetectsApplicationNamespace;
 use Symfony\Component\Console\Input\InputArgument;
 use Remoblaser\Resourceful\Traits\SelectableCommandsTrait;
 
 
 class ControllerMakeCommand extends Command {
-    use AppNamespaceDetectorTrait;
+    use DetectsApplicationNamespace;
     use SelectableCommandsTrait;
     /**
      * The console command name.
